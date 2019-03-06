@@ -20,4 +20,6 @@ public class Light {
     public void setOn(boolean on) {
         isOn = on;
     }
+
+    public boolean equalId(SensorEvent event) { return this.getId().equals(event.getObjectId()); }
 }

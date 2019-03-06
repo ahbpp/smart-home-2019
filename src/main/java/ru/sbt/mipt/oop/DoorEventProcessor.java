@@ -36,6 +36,6 @@ public class DoorEventProcessor extends EventProcessor {
     }
 
     private static void sendCommand(SensorCommand command) {
-        System.out.println("Pretent we're sending command " + command);
+        System.out.println("Pretend we're sending command " + command);
     }
 }
