@@ -15,9 +15,7 @@ public class Application {
 
     private static void runEvents(SmartHome smartHome) {
         SensorEvent event = EventSensorGetter.getNextSensorEvent();
-        ArrayList<EventProcessor> eventProcessors = new ArrayList<EventProcessor>();
-        eventProcessors.add(new LightsEventProcessor());
-        eventProcessors.add(new DoorEventProcessor());
+        ArrayList<EventProcessor> eventProcessors = createProcessors();
 
         while (event != null) {
             System.out.println("Got event: " + event);
@@ -27,6 +25,14 @@ public class Application {
 
             event = EventSensorGetter.getNextSensorEvent();
         }
+    }
+
+    private static ArrayList<EventProcessor> createProcessors() {
+        ArrayList<EventProcessor> eventProcessors = new ArrayList<EventProcessor>();
+        eventProcessors.add(new LightsEventProcessor());
+        eventProcessors.add(new DoorEventProcessor());
+        eventProcessors.add(new HallAdditionalEventProcessor());
+        return  eventProcessors;
     }
 
 }

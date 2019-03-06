@@ -16,4 +16,12 @@ public class Door {
     public void setOpen(boolean open) {
         isOpen = open;
     }
+
+    public boolean equalId(SensorEvent event) {
+        return this.getId().equals(event.getObjectId());
+    }
+
+    public boolean equalName(String name) {
+        return this.getId().equals(name);
+    }
 }
