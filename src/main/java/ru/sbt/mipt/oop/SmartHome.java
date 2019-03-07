@@ -28,7 +28,7 @@ public class SmartHome {
                 light.setOn(false);
                 SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
                 CommandSender commandSender = new CommandSender();
-                commandSender.sendCommand(command);
+                commandSender.sendMessage(command);
             }
         }
     }

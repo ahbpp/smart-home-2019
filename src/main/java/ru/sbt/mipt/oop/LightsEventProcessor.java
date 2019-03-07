@@ -24,6 +24,7 @@ public class LightsEventProcessor implements EventProcessor {
 
     private void changeState(boolean state, Light light, Room room, String action_str) {
         light.setOn(state);
-        System.out.println("Light " + light.getId() + " in room " + room.getName() + action_str);
+        StatePrinter statePrinter = new StatePrinter();
+        statePrinter.sendMessage("Light " + light.getId() + " in room " + room.getName() + action_str);
     }
 }

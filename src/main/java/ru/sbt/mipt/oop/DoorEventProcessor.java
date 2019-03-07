@@ -23,7 +23,8 @@ public class DoorEventProcessor implements EventProcessor {
     }
     private void changeState(boolean state, Door door, Room room, String action_str) {
         door.setOpen(state);
-        System.out.println("Door " + door.getId() + " in room " + room.getName() + action_str);
+        StatePrinter statePrinter = new StatePrinter();
+        statePrinter.sendMessage("Door " + door.getId() + " in room " + room.getName() + action_str);
     }
 
 }

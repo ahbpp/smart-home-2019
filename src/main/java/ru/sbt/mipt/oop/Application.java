@@ -7,8 +7,8 @@ public class Application {
 
     public static void main(String... args) throws IOException {
         // считываем состояние дома из файла
-        SmartHomeReader smartHomeReader = new SmartHomeReader();
-        SmartHome smartHome = smartHomeReader.ReadSmartHome();
+        SmartHomeJsReader smartHomeJsReader = new SmartHomeJsReader();
+        SmartHome smartHome = smartHomeJsReader.ReadSmartHome();
         runEvents(smartHome);
 
     }
@@ -17,6 +17,10 @@ public class Application {
         SensorEvent event = EventSensorGetter.getNextSensorEvent();
         ArrayList<EventProcessor> eventProcessors = createProcessors();
 
+        runProcessors(smartHome, event, eventProcessors);
+    }
+
+    private static void runProcessors(SmartHome smartHome, SensorEvent event, ArrayList<EventProcessor> eventProcessors) {
         while (event != null) {
             System.out.println("Got event: " + event);
             for (EventProcessor eventProcessor : eventProcessors) {
@@ -31,7 +35,7 @@ public class Application {
         ArrayList<EventProcessor> eventProcessors = new ArrayList<EventProcessor>();
         eventProcessors.add(new LightsEventProcessor());
         eventProcessors.add(new DoorEventProcessor());
-        eventProcessors.add(new HallAdditigitonalEventProcessor());
+        eventProcessors.add(new HallAdditionalEventProcessor());
         return  eventProcessors;
     }
 
