@@ -31,7 +31,7 @@ public class Application {
         ArrayList<EventProcessor> eventProcessors = new ArrayList<EventProcessor>();
         eventProcessors.add(new LightsEventProcessor());
         eventProcessors.add(new DoorEventProcessor());
-        eventProcessors.add(new HallAdditionalEventProcessor());
+        eventProcessors.add(new HallAdditigitonalEventProcessor());
         return  eventProcessors;
     }
 
