@@ -21,5 +21,10 @@ public class Light {
         isOn = on;
     }
 
-    public boolean equalId(SensorEvent event) { return this.getId().equals(event.getObjectId()); }
+    public void turnOff() {
+        this.setOn(false);
+        SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, this.getId());
+        CommandSender commandSender = new CommandSender();
+        commandSender.sendCommand(command);
+    }
 }

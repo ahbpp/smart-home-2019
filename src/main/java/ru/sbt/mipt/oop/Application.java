@@ -8,26 +8,23 @@ public class Application {
     public static void main(String... args) throws IOException {
         // считываем состояние дома из файла
         SmartHomeJsReader smartHomeJsReader = new SmartHomeJsReader();
-        SmartHome smartHome = smartHomeJsReader.ReadSmartHome();
+        SmartHome smartHome = smartHomeJsReader.readSmartHome();
         runEvents(smartHome);
 
     }
 
     private static void runEvents(SmartHome smartHome) {
-        SensorEvent event = EventSensorGetter.getNextSensorEvent();
+        EventSensorGetter eventSensorGetter = new EventSensorGetter();
+        SensorEvent event = eventSensorGetter.getNextSensorEvent();
         ArrayList<EventProcessor> eventProcessors = createProcessors();
 
-        runProcessors(smartHome, event, eventProcessors);
-    }
-
-    private static void runProcessors(SmartHome smartHome, SensorEvent event, ArrayList<EventProcessor> eventProcessors) {
         while (event != null) {
             System.out.println("Got event: " + event);
             for (EventProcessor eventProcessor : eventProcessors) {
-                eventProcessor.runEvent(event, smartHome);
+                eventProcessor.processEvent(event, smartHome);
             }
 
-            event = EventSensorGetter.getNextSensorEvent();
+            event = eventSensorGetter.getNextSensorEvent();
         }
     }
 

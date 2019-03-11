@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import com.google.gson.Gson;
 
 public class SmartHomeJsReader implements SmartHomeReader {
-    public SmartHome ReadSmartHome() throws IOException {
+    public SmartHome readSmartHome() throws IOException {
         // считываем состояние дома из файла
         Gson gson = new Gson();
         String json = new String(Files.readAllBytes(Paths.get("smart-home-1.js")));

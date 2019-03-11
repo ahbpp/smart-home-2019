@@ -25,10 +25,7 @@ public class SmartHome {
     public void turnOffLight() {
         for (Room homeRoom : this.getRooms()) {
             for (Light light : homeRoom.getLights()) {
-                light.setOn(false);
-                SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, light.getId());
-                CommandSender commandSender = new CommandSender();
-                commandSender.sendMessage(command);
+                light.turnOff();
             }
         }
     }

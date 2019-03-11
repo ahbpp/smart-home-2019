@@ -17,11 +17,4 @@ public class Door {
         isOpen = open;
     }
 
-    public boolean equalId(SensorEvent event) {
-        return this.getId().equals(event.getObjectId());
-    }
-
-    public boolean equalName(String name) {
-        return this.getId().equals(name);
-    }
 }
