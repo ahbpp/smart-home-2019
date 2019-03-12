@@ -27,4 +27,8 @@ public class Light {
         CommandSender commandSender = new CommandSender();
         commandSender.sendCommand(command);
     }
+
+    public boolean getState() {
+        return isOn;
+    }
 }

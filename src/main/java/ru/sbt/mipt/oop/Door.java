@@ -17,4 +17,7 @@ public class Door {
         isOpen = open;
     }
 
+    public boolean getState() {
+        return isOpen;
+    }
 }

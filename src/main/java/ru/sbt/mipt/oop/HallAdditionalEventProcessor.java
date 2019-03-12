@@ -14,12 +14,9 @@ public class HallAdditionalEventProcessor extends DoorEventProcessor {
                         if (room.equalName("hall")) {
                             smartHome.turnOffLight();
                         }
-
                     }
-
                 }
             }
         }
-
     }
 }

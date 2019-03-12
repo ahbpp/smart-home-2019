@@ -14,7 +14,7 @@ public class DoorEventProcessor implements EventProcessor {
                         if (event.getType() == DOOR_OPEN) {
                             changeState(true, door, room, "was opened.");
                         } else {
-                            changeState(true, door, room, "was closed.");
+                            changeState(false, door, room, "was closed.");
                         }
                     }
                 }
