@@ -1,4 +1,9 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.components;
+
+import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.commands.CommandSender;
+import ru.sbt.mipt.oop.commands.CommandType;
+import ru.sbt.mipt.oop.sensors.SensorCommand;
 
 public class Light implements Actionable {
     private boolean isOn;

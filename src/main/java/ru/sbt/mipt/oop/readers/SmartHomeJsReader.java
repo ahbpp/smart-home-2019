@@ -1,10 +1,12 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.readers;
 
+
+import com.google.gson.Gson;
+import ru.sbt.mipt.oop.components.SmartHome;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import com.google.gson.Gson;
 
 public class SmartHomeJsReader implements SmartHomeReader {
     public SmartHome readSmartHome() throws IOException {

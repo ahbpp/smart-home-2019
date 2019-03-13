@@ -1,5 +1,14 @@
 package ru.sbt.mipt.oop;
 
+import ru.sbt.mipt.oop.components.SmartHome;
+import ru.sbt.mipt.oop.processors.DoorEventProcessor;
+import ru.sbt.mipt.oop.processors.EventProcessor;
+import ru.sbt.mipt.oop.processors.HallAdditionalEventProcessor;
+import ru.sbt.mipt.oop.processors.LightsEventProcessor;
+import ru.sbt.mipt.oop.readers.SmartHomeJsReader;
+import ru.sbt.mipt.oop.sensors.SensorEvent;
+import ru.sbt.mipt.oop.eventsGetter.EventSensorGetter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 

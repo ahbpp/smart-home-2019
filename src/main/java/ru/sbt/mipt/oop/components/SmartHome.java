@@ -1,9 +1,11 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.components;
+
+import ru.sbt.mipt.oop.Action;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome implements Actionable{
+public class SmartHome implements Actionable {
     Collection<Room> rooms;
 
     @Override
@@ -37,7 +39,7 @@ public class SmartHome implements Actionable{
 
     public void turnOffLight() {
         this.execute(actionable -> {
-            if (actionable.getComponentName().equals("ru.sbt.mipt.oop.Light")){
+            if (actionable.getComponentName().equals("ru.sbt.mipt.oop.components.Light")){
                 Light light = (Light) actionable;
                 light.turnOff();
             }

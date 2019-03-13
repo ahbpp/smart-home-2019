@@ -1,7 +1,12 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.processors;
 
-import static ru.sbt.mipt.oop.SensorEventType.LIGHT_OFF;
-import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
+import ru.sbt.mipt.oop.components.Light;
+import ru.sbt.mipt.oop.components.SmartHome;
+import ru.sbt.mipt.oop.sensors.SensorEvent;
+import ru.sbt.mipt.oop.commands.StateMessagePrinter;
+
+import static ru.sbt.mipt.oop.sensors.SensorEventType.LIGHT_OFF;
+import static ru.sbt.mipt.oop.sensors.SensorEventType.LIGHT_ON;
 
 public class LightsEventProcessor implements EventProcessor {
     @Override
@@ -9,7 +14,7 @@ public class LightsEventProcessor implements EventProcessor {
         if (!isLightEvent(event)){return;}
             // событие от источника света
         smartHome.execute(actionable -> {
-            if (actionable.getComponentName().equals("ru.sbt.mipt.oop.Light")){
+            if (actionable.getComponentName().equals("ru.sbt.mipt.oop.components.Light")){
             Light light = (Light) actionable;
             if (light.getId().equals(event.getObjectId())) {
                 changeState(light, event);
