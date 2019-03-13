@@ -6,25 +6,31 @@ import static ru.sbt.mipt.oop.SensorEventType.LIGHT_ON;
 public class LightsEventProcessor implements EventProcessor {
     @Override
     public void processEvent(SensorEvent event, SmartHome smartHome) {
-        if (event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF) {
+        if (!isLightEvent(event)){return;}
             // событие от источника света
-            for (Room room : smartHome.getRooms()) {
-                for (Light light : room.getLights()) {
-                    if (light.getId().equals(event.getObjectId())) {
-                        if (event.getType() == LIGHT_ON) {
-                            changeState(true, light, room, "was turned on.");
-                        } else {
-                            changeState(false, light, room, "was turned off.");
-                        }
-                    }
-                }
+        smartHome.execute(actionable -> {
+            if (actionable.getComponentName().equals("ru.sbt.mipt.oop.Light")){
+            Light light = (Light) actionable;
+            if (light.getId().equals(event.getObjectId())) {
+                changeState(light, event);
             }
         }
+        });
     }
 
-    private void changeState(boolean state, Light light, Room room, String action_str) {
-        light.setOn(state);
-        StateMessagePrinter statePrinter = new StateMessagePrinter();
-        statePrinter.sendMessage("Light " + light.getId() + " in room " + room.getName() + action_str);
+    private boolean isLightEvent(SensorEvent event) {
+        return (event.getType() == LIGHT_ON || event.getType() == LIGHT_OFF);
+    }
+
+    private void changeState(Light light, SensorEvent event) {
+        if (event.getType() == LIGHT_ON) {
+            light.setOn(true);
+            StateMessagePrinter statePrinter = new StateMessagePrinter();
+            statePrinter.sendMessage("Light " + light.getId() + " was turned on.");
+        } else {
+            light.setOn(false);
+            StateMessagePrinter statePrinter = new StateMessagePrinter();
+            statePrinter.sendMessage("Light " + light.getId() + " was turned off.");
+        }
     }
 }

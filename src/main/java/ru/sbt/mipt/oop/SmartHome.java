@@ -3,8 +3,21 @@ package ru.sbt.mipt.oop;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class SmartHome {
+public class SmartHome implements Actionable{
     Collection<Room> rooms;
+
+    @Override
+    public void execute(Action action) {
+        action.execute(this);
+        rooms.forEach(room -> room.execute(action));
+
+    }
+
+
+    @Override
+    public String getComponentName() {
+        return getClass().getName();
+    }
 
     public SmartHome() {
         rooms = new ArrayList<>();
@@ -23,10 +36,11 @@ public class SmartHome {
     }
 
     public void turnOffLight() {
-        for (Room homeRoom : this.getRooms()) {
-            for (Light light : homeRoom.getLights()) {
+        this.execute(actionable -> {
+            if (actionable.getComponentName().equals("ru.sbt.mipt.oop.Light")){
+                Light light = (Light) actionable;
                 light.turnOff();
             }
-        }
+        });
     }
 }
