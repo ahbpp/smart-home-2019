@@ -3,7 +3,6 @@ package ru.sbt.mipt.oop;
 import org.junit.Before;
 import org.junit.Test;
 import ru.sbt.mipt.oop.components.Light;
-import ru.sbt.mipt.oop.components.Room;
 import ru.sbt.mipt.oop.components.SmartHome;
 import ru.sbt.mipt.oop.processors.LightsEventProcessor;
 import ru.sbt.mipt.oop.readers.SmartHomeJsReader;
@@ -12,7 +11,7 @@ import ru.sbt.mipt.oop.sensors.SensorEventType;
 
 import java.io.IOException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class LightsEventProcessorTest {
 
@@ -31,13 +30,8 @@ public class LightsEventProcessorTest {
     public void LightsEventSimpleTurnOn() {
         SensorEvent event = new SensorEvent(SensorEventType.LIGHT_ON, "1");
         lightsEventProcessor.processEvent(event, smartHome);
-        for (Room room : smartHome.getRooms()) {
-            for (Light light : room.getLights()) {
-                if (light.getId().equals("1")) {
-                    assertEquals(true, light.getState());
-                }
-            }
-        }
+        Light light = smartHome.getLightByld("1");
+        assertEquals(true, light.getState());
 
     }
 
@@ -45,13 +39,8 @@ public class LightsEventProcessorTest {
     public void LightsEventSimpleTurnOff() {
         SensorEvent event = new SensorEvent(SensorEventType.LIGHT_OFF, "2");
         lightsEventProcessor.processEvent(event, smartHome);
-        for (Room room : smartHome.getRooms()) {
-            for (Light light : room.getLights()) {
-                if (light.getId().equals("2")) {
-                    assertEquals(false, light.getState());
-                }
-            }
-        }
+        Light light = smartHome.getLightByld("2");
+        assertEquals(false, light.getState());
 
     }
 }

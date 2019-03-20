@@ -45,4 +45,42 @@ public class SmartHome implements Actionable {
             }
         });
     }
+
+    public Door getDoorByld(String id) {
+        for (Room room : this.getRooms()) {
+            for (Door door : room.getDoors()) {
+                if (door.getId().equals(id)) {
+                    return door;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Light getLightByld(String id) {
+        for (Room room : this.getRooms()) {
+            for (Light light : room.getLights()) {
+                if (light.getId().equals(id)) {
+                    return light;
+                }
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Door> getDoors() {
+        ArrayList<Door> doors = new ArrayList<Door>();
+        for (Room room : this.getRooms()) {
+            doors.addAll(room.getDoors());
+        }
+        return doors;
+    }
+
+    public ArrayList<Light> getLights() {
+        ArrayList<Light> lights = new ArrayList<Light>();
+        for (Room room : this.getRooms()) {
+            lights.addAll(room.getLights());
+        }
+        return lights;
+    }
 }

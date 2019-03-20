@@ -3,7 +3,6 @@ package ru.sbt.mipt.oop;
 import org.junit.Before;
 import org.junit.Test;
 import ru.sbt.mipt.oop.components.Door;
-import ru.sbt.mipt.oop.components.Room;
 import ru.sbt.mipt.oop.components.SmartHome;
 import ru.sbt.mipt.oop.processors.DoorEventProcessor;
 import ru.sbt.mipt.oop.readers.SmartHomeJsReader;
@@ -30,13 +29,8 @@ public class DoorEventProcessorTest {
     public void processEventSimpleClose() {
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_CLOSED, "3");
         doorEventProcessor.processEvent(event, smartHome);
-        for (Room room : smartHome.getRooms()) {
-            for (Door door : room.getDoors()) {
-                if (door.getId().equals("3")) {
-                    assertEquals(false, door.getState());
-                }
-            }
-        }
+        Door door = smartHome.getDoorByld("3");
+        assertEquals(false, door.getState());
 
     }
 
@@ -44,13 +38,8 @@ public class DoorEventProcessorTest {
     public void processEventSimpleOpen() {
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_OPEN, "1");
         doorEventProcessor.processEvent(event, smartHome);
-        for (Room room : smartHome.getRooms()) {
-            for (Door door : room.getDoors()) {
-                if (door.getId().equals("1")) {
-                    assertEquals(true, door.getState());
-                }
-            }
-        }
-
+        Door door = smartHome.getDoorByld("1");
+        assertEquals(true, door.getState());
     }
+
 }

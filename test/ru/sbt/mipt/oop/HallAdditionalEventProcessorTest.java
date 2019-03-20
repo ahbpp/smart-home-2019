@@ -3,7 +3,6 @@ package ru.sbt.mipt.oop;
 import org.junit.Before;
 import org.junit.Test;
 import ru.sbt.mipt.oop.components.Light;
-import ru.sbt.mipt.oop.components.Room;
 import ru.sbt.mipt.oop.components.SmartHome;
 import ru.sbt.mipt.oop.processors.HallAdditionalEventProcessor;
 import ru.sbt.mipt.oop.readers.SmartHomeJsReader;
@@ -11,8 +10,9 @@ import ru.sbt.mipt.oop.sensors.SensorEvent;
 import ru.sbt.mipt.oop.sensors.SensorEventType;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class HallAdditionalEventProcessorTest {
 
@@ -30,11 +30,11 @@ public class HallAdditionalEventProcessorTest {
     public void HallEventSimpleTestClose() {
         SensorEvent event = new SensorEvent(SensorEventType.DOOR_CLOSED, "4");
         hallAdditionalEventProcessor.processEvent(event, smartHome);
-        for (Room room : smartHome.getRooms()) {
-            for (Light light : room.getLights()) {
-                assertEquals(false, light.getState());
-            }
+        ArrayList<Light> lights = smartHome.getLights();
+        for (Light light : lights) {
+            assertEquals(false, light.getState());
         }
+
     }
 
     @Test
@@ -43,10 +43,9 @@ public class HallAdditionalEventProcessorTest {
         SensorEvent event2 = new SensorEvent(SensorEventType.DOOR_CLOSED, "4");
         hallAdditionalEventProcessor.processEvent(event1, smartHome);
         hallAdditionalEventProcessor.processEvent(event2, smartHome);
-        for (Room room : smartHome.getRooms()) {
-            for (Light light : room.getLights()) {
-                assertEquals(false, light.getState());
-            }
+        ArrayList<Light> lights = smartHome.getLights();
+        for (Light light : lights) {
+            assertEquals(false, light.getState());
         }
     }
 }
