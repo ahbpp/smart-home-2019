@@ -18,7 +18,6 @@ public class ProcessorAlarmDecorator implements EventProcessor{
         if (alarm.isAlertState()) {
             return;
         }
-
         eventProcessor.processEvent(event, smartHome);
     }
 

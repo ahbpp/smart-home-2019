@@ -47,4 +47,15 @@ public class AlarmEventProcessorTest {
         alarmEventProcessor.processEvent(event2, smartHome);
         assertTrue(smartHome.getAlarm().isAlertState());
     }
+
+    @Test
+    public void AlarmDeactivateTest(){
+        AlarmEvent event1 = new AlarmEvent(SensorEventType.ALARM_ACTIVATE, 1234);
+        alarmEventProcessor.processEvent(event1, smartHome);
+        AlarmEvent event2 = new AlarmEvent(SensorEventType.ALARM_DEACTIVATE, 2345);
+        alarmEventProcessor.processEvent(event2, smartHome);
+        AlarmEvent event3 = new AlarmEvent(SensorEventType.ALARM_DEACTIVATE, 1234);
+        alarmEventProcessor.processEvent(event3, smartHome);
+        assertTrue(smartHome.getAlarm().isDeactivateState());
+    }
 }

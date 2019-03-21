@@ -39,7 +39,7 @@ public class Application {
         eventProcessors.add(new ProcessorAlarmDecorator(new LightsEventProcessor()));
         eventProcessors.add(new ProcessorAlarmDecorator(new DoorEventProcessor()));
         eventProcessors.add(new ProcessorAlarmDecorator(new HallAdditionalEventProcessor()));
-        eventProcessors.add(new ProcessorAlarmDecorator(new AlarmEventProcessor()));
+        eventProcessors.add(new AlarmEventProcessor());
         return  eventProcessors;
     }
 
