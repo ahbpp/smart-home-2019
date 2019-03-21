@@ -1,4 +1,6 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.commands;
+
+import ru.sbt.mipt.oop.sensors.SensorCommand;
 
 public class CommandSender implements SmartHomeCommandSender {
     public void sendCommand(SensorCommand command) {
