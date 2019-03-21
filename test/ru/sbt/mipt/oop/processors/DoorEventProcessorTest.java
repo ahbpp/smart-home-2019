@@ -1,10 +1,9 @@
-package ru.sbt.mipt.oop;
+package ru.sbt.mipt.oop.processors;
 
 import org.junit.Before;
 import org.junit.Test;
 import ru.sbt.mipt.oop.components.Door;
 import ru.sbt.mipt.oop.components.SmartHome;
-import ru.sbt.mipt.oop.processors.DoorEventProcessor;
 import ru.sbt.mipt.oop.readers.SmartHomeJsReader;
 import ru.sbt.mipt.oop.sensors.SensorEvent;
 import ru.sbt.mipt.oop.sensors.SensorEventType;
