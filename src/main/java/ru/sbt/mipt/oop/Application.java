@@ -1,13 +1,10 @@
 package ru.sbt.mipt.oop;
 
 import ru.sbt.mipt.oop.components.SmartHome;
-import ru.sbt.mipt.oop.processors.DoorEventProcessor;
-import ru.sbt.mipt.oop.processors.EventProcessor;
-import ru.sbt.mipt.oop.processors.HallAdditionalEventProcessor;
-import ru.sbt.mipt.oop.processors.LightsEventProcessor;
+import ru.sbt.mipt.oop.eventsGetter.EventSensorGetter;
+import ru.sbt.mipt.oop.processors.*;
 import ru.sbt.mipt.oop.readers.SmartHomeJsReader;
 import ru.sbt.mipt.oop.sensors.SensorEvent;
-import ru.sbt.mipt.oop.eventsGetter.EventSensorGetter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,9 +36,10 @@ public class Application {
 
     private static ArrayList<EventProcessor> createProcessors() {
         ArrayList<EventProcessor> eventProcessors = new ArrayList<EventProcessor>();
-        eventProcessors.add(new LightsEventProcessor());
-        eventProcessors.add(new DoorEventProcessor());
-        eventProcessors.add(new HallAdditionalEventProcessor());
+        eventProcessors.add(new ProcessorAlarmDecorator(new LightsEventProcessor()));
+        eventProcessors.add(new ProcessorAlarmDecorator(new DoorEventProcessor()));
+        eventProcessors.add(new ProcessorAlarmDecorator(new HallAdditionalEventProcessor()));
+        eventProcessors.add(new AlarmEventProcessor());
         return  eventProcessors;
     }
 

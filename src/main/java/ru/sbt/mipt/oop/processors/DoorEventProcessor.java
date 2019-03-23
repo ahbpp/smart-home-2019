@@ -9,6 +9,7 @@ import static ru.sbt.mipt.oop.sensors.SensorEventType.DOOR_CLOSED;
 import static ru.sbt.mipt.oop.sensors.SensorEventType.DOOR_OPEN;
 
 public class DoorEventProcessor implements EventProcessor {
+
     @Override
     public void processEvent(SensorEvent event, SmartHome smartHome) {
         if (!isDoorEvent(event)) {return;}
