@@ -38,6 +38,8 @@ public class ProcessorAlarmDecoratorTest {
         AlarmEvent event2 = new AlarmEvent(SensorEventType.ALARM_DEACTIVATE, 3457);
         alarmEventProcessor.processEvent(event2, smartHome);
 
+        //alert state
+
         SensorEvent event3 = new SensorEvent(SensorEventType.DOOR_CLOSED, "3");
         doorEventProcessor.processEvent(event3, smartHome);
         Door door = smartHome.getDoorByld("3");
@@ -57,13 +59,17 @@ public class ProcessorAlarmDecoratorTest {
         AlarmEvent event2 = new AlarmEvent(SensorEventType.ALARM_DEACTIVATE, 3457);
         alarmEventProcessor.processEvent(event2, smartHome);
 
-        SensorEvent event3 = new SensorEvent(SensorEventType.DOOR_CLOSED, "3");
-        doorEventProcessor.processEvent(event3, smartHome);
-        Door door = smartHome.getDoorByld("3");
-        assertEquals(true, door.getState());
+        //alert state
 
         AlarmEvent event4 = new AlarmEvent(SensorEventType.ALARM_DEACTIVATE, 1234);
         alarmEventProcessor.processEvent(event4, smartHome);
+
+        //deactivate state
+
+        SensorEvent event3 = new SensorEvent(SensorEventType.DOOR_CLOSED, "3");
+        doorEventProcessor.processEvent(event3, smartHome);
+        Door door = smartHome.getDoorByld("3");
+        assertEquals(false, door.getState());
 
         SensorEvent event5 = new SensorEvent(SensorEventType.LIGHT_OFF, "2");
         lightsEventProcessor.processEvent(event5, smartHome);
