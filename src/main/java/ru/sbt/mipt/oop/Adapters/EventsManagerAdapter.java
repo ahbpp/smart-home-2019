@@ -13,13 +13,13 @@ public class EventsManagerAdapter implements EventManager {
 
     @Override
     public void Loop() {
-        System.out.println("EventsManagerAdapter.Loop() started\n============================");
+        System.out.println("EventsManagerAdapter.Loop()");
         sensorEventsManager.start();
     }
 
     @Override
     public void addHomeEventsProcessor(EventProcessor eventProcessor, SmartHome smartHome) {
-        System.out.println(eventProcessor.toString() + " handled.");
+        System.out.println("handled");
         sensorEventsManager.registerEventHandler(new EventHandlerAdapter(eventProcessor, smartHome));
     }
 }

@@ -26,8 +26,6 @@ public class EventHandlerAdapter implements EventHandler {
         sensorEventTypeMap.put("LightIsOff", SensorEventType.LIGHT_OFF);
         sensorEventTypeMap.put("DoorIsOpen", SensorEventType.DOOR_OPEN);
         sensorEventTypeMap.put("DoorIsClosed", SensorEventType.DOOR_CLOSED);
-        sensorEventTypeMap.put("DoorIsLocked", SensorEventType.ALARM_ACTIVATE);
-        sensorEventTypeMap.put("DoorIsUnlocked", SensorEventType.ALARM_DEACTIVATE);
     }
 
     @Override
