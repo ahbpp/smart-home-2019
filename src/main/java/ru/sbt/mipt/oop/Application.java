@@ -33,9 +33,10 @@ public class Application {
 
     private static ArrayList<EventProcessor> createProcessors() {
         ArrayList<EventProcessor> eventProcessors = new ArrayList<EventProcessor>();
-        eventProcessors.add(new LightsEventProcessor());
-        eventProcessors.add(new DoorEventProcessor());
-        eventProcessors.add(new HallAdditionalEventProcessor());
+        eventProcessors.add(new ProcessorAlarmDecorator(new LightsEventProcessor()));
+        eventProcessors.add(new ProcessorAlarmDecorator(new DoorEventProcessor()));
+        eventProcessors.add(new ProcessorAlarmDecorator(new HallAdditionalEventProcessor()));
+        eventProcessors.add(new AlarmEventProcessor());
         return  eventProcessors;
     }
 
