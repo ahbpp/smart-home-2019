@@ -1,6 +1,9 @@
 package ru.sbt.mipt.oop.components;
 
 import ru.sbt.mipt.oop.Action;
+import ru.sbt.mipt.oop.commands.CommandSender;
+import ru.sbt.mipt.oop.commands.CommandType;
+import ru.sbt.mipt.oop.sensors.SensorCommand;
 
 public class Door implements Actionable {
     private final String id;
@@ -14,7 +17,6 @@ public class Door implements Actionable {
     @Override
     public void execute(Action action) {
         action.execute(this);
-
 
     }
 
@@ -33,5 +35,12 @@ public class Door implements Actionable {
 
     public boolean getState() {
         return isOpen;
+    }
+
+    public void close() {
+        this.setOpen(false);
+        SensorCommand command = new SensorCommand(CommandType.DOOR_CLOSED, this.getId());
+        CommandSender commandSender = new CommandSender();
+        commandSender.sendCommand(command);
     }
 }

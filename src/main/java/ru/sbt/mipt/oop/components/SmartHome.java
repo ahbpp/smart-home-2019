@@ -49,6 +49,15 @@ public class SmartHome implements Actionable {
         });
     }
 
+    public void turnOnLight() {
+        this.execute(actionable -> {
+            if (actionable.getComponentName().equals("ru.sbt.mipt.oop.components.Light")){
+                Light light = (Light) actionable;
+                light.turnOn();
+            }
+        });
+    }
+
     public Door getDoorByld(String id) {
         for (Room room : this.getRooms()) {
             for (Door door : room.getDoors()) {

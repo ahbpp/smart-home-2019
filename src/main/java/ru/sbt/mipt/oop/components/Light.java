@@ -44,6 +44,13 @@ public class Light implements Actionable {
         commandSender.sendCommand(command);
     }
 
+    public void turnOn() {
+        this.setOn(true);
+        SensorCommand command = new SensorCommand(CommandType.LIGHT_ON, this.getId());
+        CommandSender commandSender = new CommandSender();
+        commandSender.sendCommand(command);
+    }
+
     public boolean getState() {
         return isOn;
     }
