@@ -21,7 +21,7 @@ public class RemoteController implements RemoteControl {
     public void onButtonPressed(String buttonCode) {
         Command command = mapRemoteControl.get(buttonCode);
         if (command != null) {
-            command.execute(smartHome);
+            command.execute();
         } else {
             System.out.println("This button has no command");
         }

@@ -31,12 +31,12 @@ public class RemoteControllerTest {
         remoteController = new RemoteController(smartHome);
         hallAdditionalEventProcessor = new HallAdditionalEventProcessor();
 
-        remoteController.setButton("A", new ActivateAlarmCommand());
-        remoteController.setButton("B", new AlertAlarmCoomand());
-        remoteController.setButton("C", new CloseHallDoorCommand());
-        remoteController.setButton("D", new TurnOffAllLightsCommand());
-        remoteController.setButton("1", new TurnOnAllLightsCommand());
-        remoteController.setButton("2", new TurnOnHallLightCommand());
+        remoteController.setButton("A", new ActivateAlarmCommand(smartHome.getAlarm()));
+        remoteController.setButton("B", new AlertAlarmCoomand(smartHome.getAlarm()));
+        remoteController.setButton("C", new CloseHallDoorCommand(smartHome));
+        remoteController.setButton("D", new TurnOffAllLightsCommand(smartHome));
+        remoteController.setButton("1", new TurnOnAllLightsCommand(smartHome));
+        remoteController.setButton("2", new TurnOnHallLightCommand(smartHome));
 
     }
 

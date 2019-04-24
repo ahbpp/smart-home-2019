@@ -1,9 +1,6 @@
 package ru.sbt.mipt.oop.components;
 
 import ru.sbt.mipt.oop.Action;
-import ru.sbt.mipt.oop.commands.CommandSender;
-import ru.sbt.mipt.oop.commands.CommandType;
-import ru.sbt.mipt.oop.sensors.SensorCommand;
 
 public class Light implements Actionable {
     private boolean isOn;
@@ -39,16 +36,10 @@ public class Light implements Actionable {
 
     public void turnOff() {
         this.setOn(false);
-        SensorCommand command = new SensorCommand(CommandType.LIGHT_OFF, this.getId());
-        CommandSender commandSender = new CommandSender();
-        commandSender.sendCommand(command);
     }
 
     public void turnOn() {
         this.setOn(true);
-        SensorCommand command = new SensorCommand(CommandType.LIGHT_ON, this.getId());
-        CommandSender commandSender = new CommandSender();
-        commandSender.sendCommand(command);
     }
 
     public boolean getState() {

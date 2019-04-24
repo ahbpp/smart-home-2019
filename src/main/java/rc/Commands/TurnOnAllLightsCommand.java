@@ -4,10 +4,14 @@ import ru.sbt.mipt.oop.components.SmartHome;
 
 public class TurnOnAllLightsCommand implements Command {
 
-    SmartHome smartHome;
+    private final SmartHome smartHome;
+
+    public TurnOnAllLightsCommand(SmartHome smartHome) {
+        this.smartHome = smartHome;
+    }
 
     @Override
-    public void execute(SmartHome smartHome) {
+    public void execute() {
         smartHome.turnOnLight();
     }
 }

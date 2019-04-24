@@ -1,12 +1,27 @@
 package rc.Commands;
 
 import ru.sbt.mipt.oop.Alarm.Alarm;
-import ru.sbt.mipt.oop.components.SmartHome;
 
 public class ActivateAlarmCommand implements Command {
+    private final Alarm alarm;
+    private int password = -1;
+
+
+    public  ActivateAlarmCommand(Alarm alarm, int inputPassword) {
+        this.alarm = alarm;
+        this.password = inputPassword;
+    }
+
+    public ActivateAlarmCommand(Alarm alarm) {
+        this.alarm = alarm;
+    }
+
     @Override
-    public void execute(SmartHome smartHome) {
-        Alarm alarm = smartHome.getAlarm();
-        alarm.activate();
+    public void execute() {
+        if (password != -1) {
+            alarm.activate(password);
+        } else {
+            alarm.activate();
+        }
     }
 }

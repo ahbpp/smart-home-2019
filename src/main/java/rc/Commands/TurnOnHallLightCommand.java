@@ -5,8 +5,14 @@ import ru.sbt.mipt.oop.components.Room;
 import ru.sbt.mipt.oop.components.SmartHome;
 
 public class TurnOnHallLightCommand implements Command{
+
+    private final SmartHome smartHome;
+
+    public TurnOnHallLightCommand(SmartHome smartHome) {
+        this.smartHome = smartHome;
+    }
     @Override
-    public void execute(SmartHome smartHome) {
+    public void execute() {
         for (Room room : smartHome.getRooms()) {
             if (room.equalName("hall")) {
                 room.execute(actionable -> {
