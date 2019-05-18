@@ -1,7 +1,6 @@
 package rc;
 
 import rc.Commands.Command;
-import ru.sbt.mipt.oop.components.SmartHome;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,11 +10,7 @@ public class RemoteController implements RemoteControl {
 
 
     private Map<String, Command> mapRemoteControl = new HashMap<>(8);
-    SmartHome smartHome;
 
-    public RemoteController(SmartHome smartHome){
-        this.smartHome = smartHome;
-    }
 
     @Override
     public void onButtonPressed(String buttonCode) {

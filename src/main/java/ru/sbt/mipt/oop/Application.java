@@ -1,5 +1,13 @@
 package ru.sbt.mipt.oop;
 
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import rc.RemoteControl;
+import rc.RemoteControlRegistry;
 import ru.sbt.mipt.oop.Adapters.EventsManagerAdapter;
 import ru.sbt.mipt.oop.components.SmartHome;
 import ru.sbt.mipt.oop.eventsGetter.EventSensorGetter;
@@ -12,10 +20,20 @@ import java.util.ArrayList;
 
 public class Application {
 
+
     public static void main(String... args) throws IOException {
+        Logger logger = LogManager.getLogger(Application.class);
         // считываем состояние дома из файла
-        SmartHomeJsReader smartHomeJsReader = new SmartHomeJsReader();
-        SmartHome smartHome = smartHomeJsReader.readSmartHome();
+        logger.info("Starting configuration");
+        ApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
+        SmartHomeJsReader smartHomeReader = context.getBean(SmartHomeJsReader.class);
+        SmartHome smartHome = smartHomeReader.readSmartHome();
+
+
+        RemoteControlRegistry remoteControlRegistry = context.getBean(RemoteControlRegistry.class);
+        RemoteControl smartHomeRemoteControl = context.getBean(RemoteControl.class);
+        remoteControlRegistry.registerRemoteControl(smartHomeRemoteControl, "1");
+
         runEvents(smartHome);
 
     }

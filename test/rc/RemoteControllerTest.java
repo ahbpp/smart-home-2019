@@ -28,7 +28,7 @@ public class RemoteControllerTest {
     public void init() throws IOException {
         SmartHomeJsReader smartHomeJsReader = new SmartHomeJsReader();
         smartHome = smartHomeJsReader.readSmartHome();
-        remoteController = new RemoteController(smartHome);
+        remoteController = new RemoteController();
         hallAdditionalEventProcessor = new HallAdditionalEventProcessor();
 
         remoteController.setButton("A", new ActivateAlarmCommand(smartHome.getAlarm()));
